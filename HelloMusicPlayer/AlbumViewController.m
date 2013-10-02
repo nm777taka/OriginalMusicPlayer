@@ -14,8 +14,8 @@
 }
 
 @property UITableView* albumTable;
-
 @property NSMutableArray* albumArray;
+
 
 @end
 
@@ -84,6 +84,10 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifer];
     }
     
+    MPMediaItemArtwork* cellArtwork = [self getArtWork:self.albumArray[indexPath.row]];
+    UIImage* cellImage = [cellArtwork imageWithSize:cell.imageView.bounds.size];
+    
+    cell.imageView.image = cellImage;
     cell.textLabel.text = self.albumArray[indexPath.row];
     
     return cell;
@@ -98,6 +102,16 @@
     //segue
     [self.navigationController pushViewController:vc animated:YES];
     
+}
+
+- (MPMediaItemArtwork*)getArtWork:(NSString*)albumTitle{
+    MPMediaQuery* artQuery = [[MPMediaQuery alloc]init];
+    [artQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:albumTitle forProperty:MPMediaItemPropertyAlbumTitle]];
+    NSArray* result = [artQuery items];
+    MPMediaItem* albumItem = result[0];
+    MPMediaItemArtwork* albumArtwork = [albumItem valueForProperty:MPMediaItemPropertyArtwork];
+    
+    return albumArtwork;
 }
 
 @end
