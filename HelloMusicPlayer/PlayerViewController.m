@@ -7,8 +7,7 @@
 //
 
 #import "PlayerViewController.h"
-#import "colorArt.h"
-
+#import "LEColorPicker.h"
 @interface PlayerViewController (){
     BOOL stopFlag;
     MPMusicPlayerController* myPlayer;
@@ -63,10 +62,9 @@
     }
     
     //アートワーク解析→バックの色を変更
-    CGSize artSize = CGSizeMake(320.f, 320.f);
-    colorArt* artworkColor = [[colorArt alloc]initWithImage:artWorkImage scaledSize:artSize];
-    
-    self.view.backgroundColor = artworkColor.backgroundColor;
+    LEColorPicker* colorPicker = [[LEColorPicker alloc]init];
+    LEColorScheme* colorScheme = [colorPicker colorSchemeFromImage:artWorkImage];
+    self.view.backgroundColor = colorScheme.backgroundColor;
     
     self.songTitleLabel.text = self.songTitle;
     self.detailLabel.text = self.albumTitle;

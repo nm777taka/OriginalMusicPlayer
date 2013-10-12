@@ -31,6 +31,8 @@
 		0F95B63017F9B956002E0559 /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F95B62E17F9B956002E0559 /* playButton.png */; };
 		0F95B63417FDBF5C002E0559 /* colorArt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B63317FDBF5C002E0559 /* colorArt.m */; };
 		0F95B63617FDCE17002E0559 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F95B63517FDCE17002E0559 /* QuartzCore.framework */; };
+		0FAE5CAB1808FAF40019BB38 /* LEColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAE5CA81808FAF40019BB38 /* LEColorPicker.m */; };
+		0FAE5CAC1808FAF40019BB38 /* UIColor+YUVSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAE5CAA1808FAF40019BB38 /* UIColor+YUVSpace.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,10 @@
 		0F95B63217FDBF5C002E0559 /* colorArt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorArt.h; sourceTree = "<group>"; };
 		0F95B63317FDBF5C002E0559 /* colorArt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = colorArt.m; sourceTree = "<group>"; };
 		0F95B63517FDCE17002E0559 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0FAE5CA71808FAF40019BB38 /* LEColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEColorPicker.h; sourceTree = "<group>"; };
+		0FAE5CA81808FAF40019BB38 /* LEColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEColorPicker.m; sourceTree = "<group>"; };
+		0FAE5CA91808FAF40019BB38 /* UIColor+YUVSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+YUVSpace.h"; sourceTree = "<group>"; };
+		0FAE5CAA1808FAF40019BB38 /* UIColor+YUVSpace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YUVSpace.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +212,10 @@
 				0F95B62817F88581002E0559 /* PlayerViewController.m */,
 				0F95B63217FDBF5C002E0559 /* colorArt.h */,
 				0F95B63317FDBF5C002E0559 /* colorArt.m */,
+				0FAE5CA71808FAF40019BB38 /* LEColorPicker.h */,
+				0FAE5CA81808FAF40019BB38 /* LEColorPicker.m */,
+				0FAE5CA91808FAF40019BB38 /* UIColor+YUVSpace.h */,
+				0FAE5CAA1808FAF40019BB38 /* UIColor+YUVSpace.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -313,9 +323,11 @@
 				0F95B62A17F88581002E0559 /* PlayerViewController.m in Sources */,
 				0F95B61D17F71F25002E0559 /* AlbumViewController.m in Sources */,
 				0F95B62017F730E4002E0559 /* AlbumSongViewController.m in Sources */,
+				0FAE5CAC1808FAF40019BB38 /* UIColor+YUVSpace.m in Sources */,
 				0F95B63417FDBF5C002E0559 /* colorArt.m in Sources */,
 				0F95B5FB17F46B30002E0559 /* ViewController.m in Sources */,
 				0F95B62317F732BE002E0559 /* Singleton.m in Sources */,
+				0FAE5CAB1808FAF40019BB38 /* LEColorPicker.m in Sources */,
 				0F95B5F517F46B30002E0559 /* AppDelegate.m in Sources */,
 				0F95B5F117F46B30002E0559 /* main.m in Sources */,
 			);
