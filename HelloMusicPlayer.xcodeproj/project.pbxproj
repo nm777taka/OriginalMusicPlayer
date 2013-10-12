@@ -29,6 +29,8 @@
 		0F95B62B17F88581002E0559 /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F95B62917F88581002E0559 /* PlayerViewController.xib */; };
 		0F95B62F17F9B956002E0559 /* stopBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F95B62D17F9B956002E0559 /* stopBtn.png */; };
 		0F95B63017F9B956002E0559 /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F95B62E17F9B956002E0559 /* playButton.png */; };
+		0F95B63417FDBF5C002E0559 /* colorArt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B63317FDBF5C002E0559 /* colorArt.m */; };
+		0F95B63617FDCE17002E0559 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F95B63517FDCE17002E0559 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,9 @@
 		0F95B62917F88581002E0559 /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
 		0F95B62D17F9B956002E0559 /* stopBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopBtn.png; sourceTree = "<group>"; };
 		0F95B62E17F9B956002E0559 /* playButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playButton.png; sourceTree = "<group>"; };
+		0F95B63217FDBF5C002E0559 /* colorArt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorArt.h; sourceTree = "<group>"; };
+		0F95B63317FDBF5C002E0559 /* colorArt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = colorArt.m; sourceTree = "<group>"; };
+		0F95B63517FDCE17002E0559 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F95B63617FDCE17002E0559 /* QuartzCore.framework in Frameworks */,
 				0F95B61A17F46B68002E0559 /* MediaPlayer.framework in Frameworks */,
 				0F95B5E717F46B30002E0559 /* CoreGraphics.framework in Frameworks */,
 				0F95B5E917F46B30002E0559 /* UIKit.framework in Frameworks */,
@@ -122,6 +128,7 @@
 		0F95B5E317F46B30002E0559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0F95B63517FDCE17002E0559 /* QuartzCore.framework */,
 				0F95B61917F46B68002E0559 /* MediaPlayer.framework */,
 				0F95B5E417F46B30002E0559 /* Foundation.framework */,
 				0F95B5E617F46B30002E0559 /* CoreGraphics.framework */,
@@ -134,20 +141,11 @@
 		0F95B5EA17F46B30002E0559 /* HelloMusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				0F95B63117FDBF3B002E0559 /* classes */,
 				0F95B62C17F9B91E002E0559 /* png */,
 				0F95B5F317F46B30002E0559 /* AppDelegate.h */,
 				0F95B5F417F46B30002E0559 /* AppDelegate.m */,
 				0F95B5F617F46B30002E0559 /* Main.storyboard */,
-				0F95B5F917F46B30002E0559 /* ViewController.h */,
-				0F95B5FA17F46B30002E0559 /* ViewController.m */,
-				0F95B61B17F71F25002E0559 /* AlbumViewController.h */,
-				0F95B61C17F71F25002E0559 /* AlbumViewController.m */,
-				0F95B61E17F730E4002E0559 /* AlbumSongViewController.h */,
-				0F95B61F17F730E4002E0559 /* AlbumSongViewController.m */,
-				0F95B62117F732BE002E0559 /* Singleton.h */,
-				0F95B62217F732BE002E0559 /* Singleton.m */,
-				0F95B62717F88581002E0559 /* PlayerViewController.h */,
-				0F95B62817F88581002E0559 /* PlayerViewController.m */,
 				0F95B62917F88581002E0559 /* PlayerViewController.xib */,
 				0F95B5FC17F46B30002E0559 /* Images.xcassets */,
 				0F95B5EB17F46B30002E0559 /* Supporting Files */,
@@ -191,6 +189,25 @@
 				0F95B62E17F9B956002E0559 /* playButton.png */,
 			);
 			name = png;
+			sourceTree = "<group>";
+		};
+		0F95B63117FDBF3B002E0559 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				0F95B5F917F46B30002E0559 /* ViewController.h */,
+				0F95B5FA17F46B30002E0559 /* ViewController.m */,
+				0F95B61B17F71F25002E0559 /* AlbumViewController.h */,
+				0F95B61C17F71F25002E0559 /* AlbumViewController.m */,
+				0F95B61E17F730E4002E0559 /* AlbumSongViewController.h */,
+				0F95B61F17F730E4002E0559 /* AlbumSongViewController.m */,
+				0F95B62117F732BE002E0559 /* Singleton.h */,
+				0F95B62217F732BE002E0559 /* Singleton.m */,
+				0F95B62717F88581002E0559 /* PlayerViewController.h */,
+				0F95B62817F88581002E0559 /* PlayerViewController.m */,
+				0F95B63217FDBF5C002E0559 /* colorArt.h */,
+				0F95B63317FDBF5C002E0559 /* colorArt.m */,
+			);
+			name = classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +313,7 @@
 				0F95B62A17F88581002E0559 /* PlayerViewController.m in Sources */,
 				0F95B61D17F71F25002E0559 /* AlbumViewController.m in Sources */,
 				0F95B62017F730E4002E0559 /* AlbumSongViewController.m in Sources */,
+				0F95B63417FDBF5C002E0559 /* colorArt.m in Sources */,
 				0F95B5FB17F46B30002E0559 /* ViewController.m in Sources */,
 				0F95B62317F732BE002E0559 /* Singleton.m in Sources */,
 				0F95B5F517F46B30002E0559 /* AppDelegate.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "PlayerViewController.h"
+#import "colorArt.h"
 
 @interface PlayerViewController (){
     BOOL stopFlag;
@@ -60,6 +61,12 @@
     if (artWorkImage) {
         self.artWork.image = artWorkImage;
     }
+    
+    //アートワーク解析→バックの色を変更
+    CGSize artSize = CGSizeMake(320.f, 320.f);
+    colorArt* artworkColor = [[colorArt alloc]initWithImage:artWorkImage scaledSize:artSize];
+    
+    self.view.backgroundColor = artworkColor.backgroundColor;
     
     self.songTitleLabel.text = self.songTitle;
     self.detailLabel.text = self.albumTitle;
