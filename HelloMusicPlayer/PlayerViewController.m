@@ -8,6 +8,8 @@
 
 #import "PlayerViewController.h"
 #import "LEColorPicker.h"
+
+
 @interface PlayerViewController (){
     BOOL stopFlag;
     MPMusicPlayerController* myPlayer;
@@ -70,7 +72,7 @@
     self.detailLabel.text = self.albumTitle;
     
     //プレイヤーを初期化
-    myPlayer = [MPMusicPlayerController applicationMusicPlayer];
+    myPlayer = [MPMusicPlayerController iPodMusicPlayer];
     MPMediaQuery* requestQuery = [[MPMediaQuery alloc]init];
     [requestQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:self.songTitle forProperty:MPMediaItemPropertyTitle]];
     

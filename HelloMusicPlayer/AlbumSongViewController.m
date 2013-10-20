@@ -7,7 +7,6 @@
 //
 
 #import "AlbumSongViewController.h"
-#import "PlayerViewController.h"
 
 @interface AlbumSongViewController ()
 
@@ -15,8 +14,11 @@
 
 @property UITableView* songTable;
 
+@property NSString* didSelectTitle;
 
 @end
+
+static NSString* const songDetail = @"detail";
 
 @implementation AlbumSongViewController
 
@@ -50,11 +52,18 @@
     
     for(MPMediaItem* song in resultArray){
         NSString* songTitle = [song valueForProperty:MPMediaItemPropertyTitle];
-        NSLog(@"%@",songTitle);
         [self.songsList addObject:songTitle];
     }
     
 }
+
+- (void)viewDidDisappear:(BOOL)animated{
+    
+    NSDictionary* userInfo = @{@"name": self.didSelectTitle,@"album":self.albumName};
+    [[NSNotificationCenter defaultCenter]postNotificationName:songDetail object:self userInfo:userInfo];
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -86,13 +95,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString* didSelectPath = self.songsList[indexPath.row];
+    self.didSelectTitle = self.songsList[indexPath.row];
     
-    PlayerViewController* vc = [[PlayerViewController alloc]init];
-    vc.songTitle = didSelectPath;
-    vc.albumTitle = self.albumName;
-    
-    [self.navigationController pushViewController:vc animated:YES];
-    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
+
 @end
