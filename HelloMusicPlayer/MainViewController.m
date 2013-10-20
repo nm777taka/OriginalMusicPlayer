@@ -15,11 +15,15 @@
 
 @property MPMusicPlayerController* player;
 
-@property  UILabel *songTitleLabel;
-@property  UILabel *artistNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *songTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *artistNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *playOrStopBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *artworkImageView;
-@property UIButton* playOrStopBtn;
-@property UISlider* musicSlider;
+- (IBAction)pushedPlayOrStopButton:(id)sender;
+- (IBAction)pushedNextButton:(id)sender;
+- (IBAction)pushedPrevButton:(id)sender;
+- (IBAction)pushedMoreButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UISlider *musicSlider;
 
 @property NSNotificationCenter *nCenter;
 @property NSTimer* timer;
@@ -47,8 +51,6 @@ static  NSString* const changeKey = @"changed";
     self.player = [MPMusicPlayerController iPodMusicPlayer];
     
     [self setBGImage];
-    [self setUIButton];
-    [self setUILabel];
     
     //Notificationの設定
     self.nCenter = [NSNotificationCenter defaultCenter];
@@ -66,6 +68,13 @@ static  NSString* const changeKey = @"changed";
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setSelectedTitle:) name:songDetail object:nil];
    // [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handle_PlaybackStateChanged:) name:changeKey object:nil];
     
+    [self.musicSlider addTarget:self action:@selector(slider_ValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    MPMediaItem* nowPlayingItem = [self.player nowPlayingItem];
+    NSString* songTitle = [nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
+    NSString* artistName = [nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
+    self.songTitleLabel.text = songTitle;
+    self.artistNameLabel.text = artistName;
     
     self.isPlaying = NO;
 
@@ -80,73 +89,6 @@ static  NSString* const changeKey = @"changed";
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-}
-
-#pragma mark - initUIParts
-
-- (void)setUILabel{
-    self.songTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 20, 243, 40)];
-    self.artistNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 66, 185, 21)];
-    [self.view addSubview:self.songTitleLabel];
-    [self.view addSubview:self.artistNameLabel];
-    
-    self.songTitleLabel.textColor = [UIColor whiteColor];
-    self.artistNameLabel.textColor = [UIColor whiteColor];
-    
-    self.songTitleLabel.textAlignment = NSTextAlignmentLeft;
-    self.artistNameLabel.textAlignment = NSTextAlignmentRight;
-    
-    self.songTitleLabel.font = [UIFont fontWithName:@"Helvetica" size:25];
-    self.artistNameLabel.font = [UIFont fontWithName:@"Helvetica" size:17];
-    
-    MPMediaItem* nowPlayingItem = [self.player nowPlayingItem];
-    NSString* songTitle = [nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
-    NSString* artistName = [nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
-    self.songTitleLabel.text = songTitle;
-    self.artistNameLabel.text = artistName;
-}
-
-- (void)setUIButton{
-    
-    self.playOrStopBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.playOrStopBtn.frame = CGRectMake(110, 355, 100, 100);
-    [self.playOrStopBtn setBackgroundImage:[UIImage imageNamed:@"MainView_playBtn.png"] forState:UIControlStateNormal];
-    [self.playOrStopBtn addTarget:self action:@selector(pushedPlayOrStopButton) forControlEvents:UIControlEventTouchUpInside];
-    self.isChangePlayBtnBg = YES;
-    
-    
-    UIButton* nextBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    nextBtn.frame = CGRectMake(220, 365, 80, 80);
-    [nextBtn setBackgroundImage:[UIImage imageNamed:@"MainView_nextBtn.png"] forState:UIControlStateNormal];
-    [nextBtn addTarget:self action:@selector(pushedNextButton) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton* prevBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    prevBtn.frame = CGRectMake(20, 365, 80, 80);
-    [prevBtn setBackgroundImage:[UIImage imageNamed:@"MainView_prevBtn.png"] forState:UIControlStateNormal];
-    [prevBtn addTarget:self action:@selector(pushedPrevButton) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton* nowPlayingListBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    nowPlayingListBtn.frame = CGRectMake(0, 518, 160, 50);
-    [nowPlayingListBtn setBackgroundImage:[UIImage imageNamed:@"MainView_NPBtn.png"] forState:UIControlStateNormal];
-    [nowPlayingListBtn addTarget:self action:@selector(showNowPlayingAlbum) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton* showMoreArtistBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    showMoreArtistBtn.frame = CGRectMake(160, 518, 160, 50);
-    [showMoreArtistBtn setBackgroundImage:[UIImage imageNamed:@"MainView_ALBtn"] forState:UIControlStateNormal];
-    [showMoreArtistBtn addTarget:self action:@selector(segueToAritstListView) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.musicSlider = [[UISlider alloc]initWithFrame:CGRectMake(40, 470, 240, 33)];
-    [self.musicSlider addTarget:self action:@selector(slider_ValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:self.musicSlider];
-    
-    
-    [self.view addSubview:self.playOrStopBtn];
-    [self.view addSubview:nextBtn];
-    [self.view addSubview:prevBtn];
-    [self.view addSubview:nowPlayingListBtn];
-    [self.view addSubview:showMoreArtistBtn];
-    
-
 }
 
 - (void)setBGImage{
@@ -247,7 +189,6 @@ static  NSString* const changeKey = @"changed";
     
     self.selectedSongTitle = userInfo[@"name"];
     self.selectAlbumTitile = userInfo[@"album"];
-    
     [self playSelectedMusic];
     
 }
@@ -275,16 +216,7 @@ static  NSString* const changeKey = @"changed";
 }
 
 - (void)pushedPlayOrStopButton{
-    if (self.isPlaying == NO) {
-        [self.player play];
-        self.isPlaying = YES;
-        [self handle_PlaybackStateChanged];
-    }else{
-        [self.player pause];
-        self.isPlaying = NO;
-        [self handle_PlaybackStateChanged];
     }
-}
 
 
 - (void)pushedPrevButton{
@@ -298,19 +230,13 @@ static  NSString* const changeKey = @"changed";
     MPMediaQuery* requestQuery = [[MPMediaQuery alloc]init];
     [requestQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:self.selectedSongTitle forProperty:MPMediaItemPropertyTitle]];
     [self.player setQueueWithQuery:requestQuery];
-    [self pushedPlayOrStopButton];
+    
+    [self pushedPlayOrStopButton:nil];
 }
 
-#pragma mark - Action
 
 - (void)showNowPlayingAlbum{
     NSLog(@"tap");
-}
-
-- (void)segueToAritstListView{
-    NSLog(@"tap");
-    ArtistListViewController* secondView = [[ArtistListViewController alloc]init];
-    [self.navigationController pushViewController:secondView animated:YES];
 }
 
 #pragma makr - Slider_Method
@@ -321,7 +247,32 @@ static  NSString* const changeKey = @"changed";
     [self.player setCurrentPlaybackTime:[slider value]];
 }
 
-#pragma  mark - Delegate_Method
+#pragma mark - Action
 
 
+- (IBAction)pushedPlayOrStopButton:(id)sender {
+    
+    if (self.isPlaying == NO) {
+        [self.player play];
+        self.isPlaying = YES;
+        [self handle_PlaybackStateChanged];
+    }else{
+        [self.player pause];
+        self.isPlaying = NO;
+        [self handle_PlaybackStateChanged];
+    }
+
+}
+
+- (IBAction)pushedNextButton:(id)sender {
+}
+
+- (IBAction)pushedPrevButton:(id)sender {
+}
+
+- (IBAction)pushedMoreButton:(id)sender {
+    ArtistListViewController* secondView = [[ArtistListViewController alloc]init];
+    [self.navigationController pushViewController:secondView animated:YES];
+
+}
 @end

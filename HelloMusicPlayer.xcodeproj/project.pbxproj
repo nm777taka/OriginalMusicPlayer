@@ -48,7 +48,8 @@
 		0FAF6B1C181123AE007E3BD5 /* CommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF6B1B181123AE007E3BD5 /* CommonNavigationController.m */; };
 		0FAF6B221813C3F8007E3BD5 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF6B1F1813C3F8007E3BD5 /* JASidePanelController.m */; };
 		0FAF6B231813C3F8007E3BD5 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF6B211813C3F8007E3BD5 /* UIViewController+JASidePanel.m */; };
-		0FAF6B261813C7EF007E3BD5 /* SlidePanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF6B251813C7EF007E3BD5 /* SlidePanelViewController.m */; };
+		0FAF6B281813D2DF007E3BD5 /* clearBlackView.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAF6B271813D2DF007E3BD5 /* clearBlackView.png */; };
+		0FAF6B2E1814381A007E3BD5 /* SlidePanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF6B2D1814381A007E3BD5 /* SlidePanelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,8 +122,9 @@
 		0FAF6B1F1813C3F8007E3BD5 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
 		0FAF6B201813C3F8007E3BD5 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
 		0FAF6B211813C3F8007E3BD5 /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
-		0FAF6B241813C7EF007E3BD5 /* SlidePanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlidePanelViewController.h; sourceTree = "<group>"; };
-		0FAF6B251813C7EF007E3BD5 /* SlidePanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlidePanelViewController.m; sourceTree = "<group>"; };
+		0FAF6B271813D2DF007E3BD5 /* clearBlackView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearBlackView.png; sourceTree = "<group>"; };
+		0FAF6B2C1814381A007E3BD5 /* SlidePanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlidePanelViewController.h; sourceTree = "<group>"; };
+		0FAF6B2D1814381A007E3BD5 /* SlidePanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlidePanelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,8 +254,8 @@
 				0F95B61C17F71F25002E0559 /* AlbumViewController.m */,
 				0F95B61E17F730E4002E0559 /* AlbumSongViewController.h */,
 				0F95B61F17F730E4002E0559 /* AlbumSongViewController.m */,
-				0FAF6B241813C7EF007E3BD5 /* SlidePanelViewController.h */,
-				0FAF6B251813C7EF007E3BD5 /* SlidePanelViewController.m */,
+				0FAF6B2C1814381A007E3BD5 /* SlidePanelViewController.h */,
+				0FAF6B2D1814381A007E3BD5 /* SlidePanelViewController.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -289,6 +291,7 @@
 		0FAF6B03180EACD4007E3BD5 /* Resourse */ = {
 			isa = PBXGroup;
 			children = (
+				0FAF6B271813D2DF007E3BD5 /* clearBlackView.png */,
 				0FAF6B0C180EB786007E3BD5 /* MainView_ALBtn.png */,
 				0FAF6B0D180EB786007E3BD5 /* MainView_nextBtn.png */,
 				0FAF6B0E180EB786007E3BD5 /* MainView_NPBtn.png */,
@@ -399,6 +402,7 @@
 				0FAF6B12180EB786007E3BD5 /* MainView_NPBtn.png in Resources */,
 				0F95B62B17F88581002E0559 /* PlayerViewController.xib in Resources */,
 				0FAF6B15180EC2A9007E3BD5 /* MainView_stopBtn.png in Resources */,
+				0FAF6B281813D2DF007E3BD5 /* clearBlackView.png in Resources */,
 				0F95B5EF17F46B30002E0559 /* InfoPlist.strings in Resources */,
 				0F95B5F817F46B30002E0559 /* Main.storyboard in Resources */,
 				0FAF6B13180EB786007E3BD5 /* MainView_prevBtn.png in Resources */,
@@ -434,7 +438,7 @@
 				0F95B5FB17F46B30002E0559 /* MainViewController.m in Sources */,
 				0FAF6B1818102EC3007E3BD5 /* ArtistListViewController.m in Sources */,
 				0F95B62317F732BE002E0559 /* Singleton.m in Sources */,
-				0FAF6B261813C7EF007E3BD5 /* SlidePanelViewController.m in Sources */,
+				0FAF6B2E1814381A007E3BD5 /* SlidePanelViewController.m in Sources */,
 				0FAE5CAB1808FAF40019BB38 /* LEColorPicker.m in Sources */,
 				0FAF6B221813C3F8007E3BD5 /* JASidePanelController.m in Sources */,
 				0FAF6B01180D68AE007E3BD5 /* DRNRealTimeBlurView.m in Sources */,

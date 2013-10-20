@@ -2,12 +2,12 @@
 //  SlidePanelViewController.h
 //  HelloMusicPlayer
 //
-//  Created by 古田 貴久 on 2013/10/20.
+//  Created by 古田 貴久 on 2013/10/21.
 //  Copyright (c) 2013年 古田 貴久. All rights reserved.
 //
 
-#import "JASidePanelController.h"
+#import <UIKit/UIKit.h>
 
-@interface SlidePanelViewController : JASidePanelController
+@interface SlidePanelViewController : UIViewController
 
 @end
