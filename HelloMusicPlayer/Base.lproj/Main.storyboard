@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="MK6-fk-W9c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="WK1-ha-VRY">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -31,7 +31,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="464" y="94"/>
+            <point key="canvasLocation" x="880" y="486"/>
         </scene>
         <!--Artist List View Controller - アーティスト-->
         <scene sceneID="SGr-5z-6oz">
@@ -51,7 +51,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNq-S8-3dX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="901" y="88"/>
+            <point key="canvasLocation" x="1317" y="480"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6Ms-yU-ACY">
+            <objects>
+                <viewController id="WK1-ha-VRY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FAW-d8-4nP"/>
+                        <viewControllerLayoutGuide type="bottom" id="rpL-Ik-zmd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2We-Ie-yTa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="MK6-fk-W9c" kind="modal" id="66i-UN-nYd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wai-et-oCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-60" y="495"/>
         </scene>
         <!--Common Navigation Controller-->
         <scene sceneID="DU7-Uq-W0E">
@@ -71,7 +92,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Cb-gr-1Uo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9" y="94"/>
+            <point key="canvasLocation" x="425" y="486"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

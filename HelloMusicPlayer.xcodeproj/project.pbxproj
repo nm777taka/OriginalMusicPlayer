@@ -46,6 +46,9 @@
 		0FAF6B15180EC2A9007E3BD5 /* MainView_stopBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAF6B14180EC2A9007E3BD5 /* MainView_stopBtn.png */; };
 		0FAF6B1818102EC3007E3BD5 /* ArtistListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF6B1718102EC3007E3BD5 /* ArtistListViewController.m */; };
 		0FAF6B1C181123AE007E3BD5 /* CommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF6B1B181123AE007E3BD5 /* CommonNavigationController.m */; };
+		0FAF6B221813C3F8007E3BD5 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF6B1F1813C3F8007E3BD5 /* JASidePanelController.m */; };
+		0FAF6B231813C3F8007E3BD5 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF6B211813C3F8007E3BD5 /* UIViewController+JASidePanel.m */; };
+		0FAF6B261813C7EF007E3BD5 /* SlidePanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAF6B251813C7EF007E3BD5 /* SlidePanelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +117,12 @@
 		0FAF6B1718102EC3007E3BD5 /* ArtistListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistListViewController.m; sourceTree = "<group>"; };
 		0FAF6B1A181123AE007E3BD5 /* CommonNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonNavigationController.h; sourceTree = "<group>"; };
 		0FAF6B1B181123AE007E3BD5 /* CommonNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonNavigationController.m; sourceTree = "<group>"; };
+		0FAF6B1E1813C3F8007E3BD5 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
+		0FAF6B1F1813C3F8007E3BD5 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
+		0FAF6B201813C3F8007E3BD5 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
+		0FAF6B211813C3F8007E3BD5 /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
+		0FAF6B241813C7EF007E3BD5 /* SlidePanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlidePanelViewController.h; sourceTree = "<group>"; };
+		0FAF6B251813C7EF007E3BD5 /* SlidePanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlidePanelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +196,7 @@
 		0F95B5EA17F46B30002E0559 /* HelloMusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				0FAF6B1D1813C3EA007E3BD5 /* Utility */,
 				0FAF6B191811236F007E3BD5 /* common */,
 				0FAF6B03180EACD4007E3BD5 /* Resourse */,
 				0FAF6AFC180D689B007E3BD5 /* Utility */,
@@ -242,6 +252,8 @@
 				0F95B61C17F71F25002E0559 /* AlbumViewController.m */,
 				0F95B61E17F730E4002E0559 /* AlbumSongViewController.h */,
 				0F95B61F17F730E4002E0559 /* AlbumSongViewController.m */,
+				0FAF6B241813C7EF007E3BD5 /* SlidePanelViewController.h */,
+				0FAF6B251813C7EF007E3BD5 /* SlidePanelViewController.m */,
 			);
 			name = classes;
 			sourceTree = "<group>";
@@ -294,6 +306,17 @@
 				0FAF6B1B181123AE007E3BD5 /* CommonNavigationController.m */,
 			);
 			name = common;
+			sourceTree = "<group>";
+		};
+		0FAF6B1D1813C3EA007E3BD5 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				0FAF6B1E1813C3F8007E3BD5 /* JASidePanelController.h */,
+				0FAF6B1F1813C3F8007E3BD5 /* JASidePanelController.m */,
+				0FAF6B201813C3F8007E3BD5 /* UIViewController+JASidePanel.h */,
+				0FAF6B211813C3F8007E3BD5 /* UIViewController+JASidePanel.m */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FAF6B1C181123AE007E3BD5 /* CommonNavigationController.m in Sources */,
+				0FAF6B231813C3F8007E3BD5 /* UIViewController+JASidePanel.m in Sources */,
 				0F95B62A17F88581002E0559 /* PlayerViewController.m in Sources */,
 				0F95B61D17F71F25002E0559 /* AlbumViewController.m in Sources */,
 				0F95B62017F730E4002E0559 /* AlbumSongViewController.m in Sources */,
@@ -410,7 +434,9 @@
 				0F95B5FB17F46B30002E0559 /* MainViewController.m in Sources */,
 				0FAF6B1818102EC3007E3BD5 /* ArtistListViewController.m in Sources */,
 				0F95B62317F732BE002E0559 /* Singleton.m in Sources */,
+				0FAF6B261813C7EF007E3BD5 /* SlidePanelViewController.m in Sources */,
 				0FAE5CAB1808FAF40019BB38 /* LEColorPicker.m in Sources */,
+				0FAF6B221813C3F8007E3BD5 /* JASidePanelController.m in Sources */,
 				0FAF6B01180D68AE007E3BD5 /* DRNRealTimeBlurView.m in Sources */,
 				0F95B5F517F46B30002E0559 /* AppDelegate.m in Sources */,
 				0F95B5F117F46B30002E0559 /* main.m in Sources */,
