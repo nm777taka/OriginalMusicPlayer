@@ -6,10 +6,10 @@
 //  Copyright (c) 2013年 古田 貴久. All rights reserved.
 //
 
-#import "ArtistListViewController.h"
-#import "AlbumViewController.h"
+#import "MPArtistListViewController.h"
+#import "MPAlbumViewController.h"
 
-@interface ArtistListViewController ()
+@interface MPArtistListViewController ()
 
 @property UITableView* artistTable;
 @property NSMutableArray* artistArray;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation ArtistListViewController
+@implementation MPArtistListViewController
 
 
 #pragma mark ViewCycle
@@ -93,7 +93,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSString* didSelectPath = self.artistArray[indexPath.row];
-    AlbumViewController* vc = [[AlbumViewController alloc]init];
+    MPAlbumViewController* vc = [[MPAlbumViewController alloc]init];
     vc.artistName = didSelectPath;
     
     [self.navigationController pushViewController:vc animated:YES];

@@ -8,26 +8,12 @@
 
 #import "AppDelegate.h"
 #import "JASidePanelController.h"
-#import "MainViewController.h"
-#import "SlidePanelViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
  
-    self.viewController = [[JASidePanelController alloc]init];
-    self.viewController.shouldDelegateAutorotateToVisiblePanel = NO;
-    
-    UIStoryboard* sb = [[[self window]rootViewController]storyboard];
-    UIViewController* mainView = [sb instantiateViewControllerWithIdentifier:@"MainViewController"];
-    //UINavigationController* navi = [sb instantiateViewControllerWithIdentifier:@"NavigationController"];
-    
-    self.viewController.centerPanel = mainView;
-    self.viewController.leftPanel = [[SlidePanelViewController alloc]init];
-    
-    self.window.rootViewController = self.viewController;
-    
     return YES;
 }
 							

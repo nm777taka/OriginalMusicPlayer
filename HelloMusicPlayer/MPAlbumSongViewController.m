@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 古田 貴久. All rights reserved.
 //
 
-#import "AlbumSongViewController.h"
+#import "MPAlbumSongViewController.h"
 
-@interface AlbumSongViewController ()
+@interface MPAlbumSongViewController ()
 
 @property (nonatomic,retain) NSMutableArray* songsList;
 
@@ -18,9 +18,9 @@
 
 @end
 
-static NSString* const songDetail = @"detail";
+static NSString* const nSongDetail = @"detail";
 
-@implementation AlbumSongViewController
+@implementation MPAlbumSongViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,8 +59,7 @@ static NSString* const songDetail = @"detail";
 
 - (void)viewDidDisappear:(BOOL)animated{
     
-    NSDictionary* userInfo = @{@"name": self.didSelectTitle,@"album":self.albumName};
-    [[NSNotificationCenter defaultCenter]postNotificationName:songDetail object:self userInfo:userInfo];
+    
     
 }
 
@@ -96,6 +95,9 @@ static NSString* const songDetail = @"detail";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     self.didSelectTitle = self.songsList[indexPath.row];
+    
+    NSDictionary* userInfo = @{@"name": self.didSelectTitle,@"album":self.albumName};
+    [[NSNotificationCenter defaultCenter]postNotificationName:nSongDetail object:self userInfo:userInfo];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

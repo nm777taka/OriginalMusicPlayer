@@ -6,10 +6,10 @@
 //  Copyright (c) 2013年 古田 貴久. All rights reserved.
 //
 
-#import "AlbumViewController.h"
-#import "AlbumSongViewController.h"
+#import "MPAlbumViewController.h"
+#import "MPAlbumSongViewController.h"
 
-@interface AlbumViewController (){
+@interface MPAlbumViewController (){
     Singleton* singleton;
 }
 
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation AlbumViewController
+@implementation MPAlbumViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -96,7 +96,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString* didSelectPath = self.albumArray[indexPath.row];
-    AlbumSongViewController* vc = [[AlbumSongViewController alloc]init];
+    MPAlbumSongViewController* vc = [[MPAlbumSongViewController alloc]init];
     vc.albumName = didSelectPath;
     
     //segue

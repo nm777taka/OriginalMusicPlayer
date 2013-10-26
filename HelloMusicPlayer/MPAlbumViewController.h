@@ -10,7 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "Singleton.h"
 
-@interface AlbumViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface MPAlbumViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,retain)NSString* artistName;
 

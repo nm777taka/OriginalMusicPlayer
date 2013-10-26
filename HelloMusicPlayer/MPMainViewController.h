@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "AlbumSongViewController.h"
+#import "MPAlbumSongViewController.h"
 
 
-@interface MainViewController : UIViewController
+@interface MPMainViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,retain)NSString* selectTitle;
 @property (nonatomic,retain)NSString* selectAlbumTitile;

@@ -11,7 +11,7 @@
 
 
 
-@interface AlbumSongViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MPAlbumSongViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,retain) NSString* albumName;
 

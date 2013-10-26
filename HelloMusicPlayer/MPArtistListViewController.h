@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface ArtistListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MPArtistListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 
 @end
