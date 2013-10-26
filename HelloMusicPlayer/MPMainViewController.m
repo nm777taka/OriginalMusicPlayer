@@ -105,8 +105,6 @@ static  NSString* const nAlbumDetail = @"albumdata";
 //    NSDictionary* albumInfo = @{@"name": self.selectAlbumTitile};
 //    [[NSNotificationCenter defaultCenter]postNotificationName:nAlbumDetail object:self userInfo:albumInfo];
     
-    [self.songDataArray removeAllObjects];
-    
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -181,12 +179,12 @@ static  NSString* const nAlbumDetail = @"albumdata";
     NSString *artist = [nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
     NSString *title = [nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
     NSString* albumTitile = [nowPlayingItem valueForProperty:MPMediaItemPropertyAlbumTitle];
-    NSLog(@"albumtitle:%@",albumTitile);
     
     self.songTitleLabel.text = title;
     self.artistNameLabel.text = artist;
     
     if (albumTitile) {
+        [self.songDataArray removeAllObjects];
         [self setSongDataToArray:albumTitile];
     }
     
