@@ -37,7 +37,7 @@
 @property BOOL isChangePlayBtnBg;
 
 @property NSString* selectedSongTitle;
-@property NSString* selectedAlbumTitile;
+@property (nonatomic,retain) NSString* selectedAlbumTitile;
 
 @property NSMutableArray* songDataArray;
 @property UIColor* primaryColor;
@@ -82,6 +82,7 @@ static  NSString* const nAlbumDetail = @"albumdata";
     MPMediaItem* nowPlayingItem = [self.player nowPlayingItem];
     NSString* songTitle = [nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
     NSString* artistName = [nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
+    self.selectedAlbumTitile = [nowPlayingItem valueForProperty:MPMediaItemPropertyAlbumTitle];
     self.songTitleLabel.text = songTitle;
     self.artistNameLabel.text = artistName;
     self.isPlaying = NO;
@@ -202,9 +203,9 @@ static  NSString* const nAlbumDetail = @"albumdata";
     self.primaryColor = colorScheme.primaryTextColor;
     self.secondaryColor = colorScheme.secondaryTextColor;
     
-    self.albumColorImageVIew.image = [self imageWithColor:[UIColor blackColor]];
+    self.albumColorImageVIew.image = [self imageWithColor:colorScheme.backgroundColor];
     
-    self.albumColorImageVIew.alpha = 0.2;
+    self.albumColorImageVIew.alpha = 0.4;
     
     self.songTitleLabel.textColor = colorScheme.primaryTextColor;
     self.artistNameLabel.textColor = colorScheme.secondaryTextColor;
@@ -252,7 +253,8 @@ static  NSString* const nAlbumDetail = @"albumdata";
     
     self.selectedSongTitle = userInfo[@"name"];
     self.selectedAlbumTitile = userInfo[@"album"];
-    [self playSelectedMusic];
+    
+    [self playSelectedTitle:self.selectedSongTitle songAlbum:self.selectedAlbumTitile];
     
 }
 
@@ -290,18 +292,18 @@ static  NSString* const nAlbumDetail = @"albumdata";
     [self.player skipToPreviousItem];
 }
 
-- (void)playSelectedMusic
+
+- (void)playSelectedTitle:(NSString *)songName songAlbum:(NSString *)songAlbum
 {
-    //初期化
-    MPMusicPlayerController* player = [MPMusicPlayerController iPodMusicPlayer];
-    self.player =player;
-    
-    MPMediaPropertyPredicate* selectedAlbumPredicate = [MPMediaPropertyPredicate predicateWithValue:self.selectedAlbumTitile forProperty:MPMediaItemPropertyAlbumTitle];
-    MPMediaPropertyPredicate* albumSongPredicate = [MPMediaPropertyPredicate predicateWithValue:self.selectedSongTitle forProperty:MPMediaItemPropertyTitle];
+    MPMediaPropertyPredicate* selectedAlbumPredicate = [MPMediaPropertyPredicate predicateWithValue:songAlbum forProperty:MPMediaItemPropertyAlbumTitle];
+    MPMediaPropertyPredicate* albumSongPredicate = [MPMediaPropertyPredicate predicateWithValue:songName forProperty:MPMediaItemPropertyTitle];
     
     MPMediaQuery* myComplexQuery = [[MPMediaQuery alloc]init];
     [myComplexQuery addFilterPredicate:selectedAlbumPredicate];
     [myComplexQuery addFilterPredicate:albumSongPredicate];
+    
+    MPMusicPlayerController* player = [MPMusicPlayerController iPodMusicPlayer];
+    self.player =player;
     
     [self.player setQueueWithQuery:myComplexQuery];
     
@@ -309,6 +311,7 @@ static  NSString* const nAlbumDetail = @"albumdata";
     self.isPlaying = YES;
     [self.player play];
     [self handle_PlaybackStateChanged];
+
 }
 
 
@@ -373,7 +376,8 @@ static  NSString* const nAlbumDetail = @"albumdata";
     return self.songDataArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString* cellIdentifier = @"Cell";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell==nil) {
@@ -386,6 +390,13 @@ static  NSString* const nAlbumDetail = @"albumdata";
     cell.backgroundColor = [UIColor clearColor];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString* selectedSongTitle = self.songDataArray[indexPath.row];
+    
+    [self playSelectedTitle:selectedSongTitle songAlbum:self.selectedAlbumTitile];
 }
 
 - (void)setSongDataToArray:(NSString *)albumTitile
