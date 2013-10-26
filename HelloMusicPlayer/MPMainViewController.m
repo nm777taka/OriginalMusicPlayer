@@ -262,7 +262,7 @@ static  NSString* const nAlbumDetail = @"albumdata";
         [self.playOrStopBtn setBackgroundImage:[UIImage imageNamed:@"MainView_stopBtn.png"] forState:UIControlStateNormal];
         self.timer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
-    }else{
+    } else {
         NSLog(@"stop");
         [self.playOrStopBtn setBackgroundImage:[UIImage imageNamed:@"MainView_playBtn.png"] forState:UIControlStateNormal];
         [self.timer invalidate];
@@ -294,7 +294,10 @@ static  NSString* const nAlbumDetail = @"albumdata";
     [requestQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:self.selectedSongTitle forProperty:MPMediaItemPropertyTitle]];
     [self.player setQueueWithQuery:requestQuery];
     
-    [self pushedPlayOrStopButton:nil];
+    [self.timer invalidate];
+    self.isPlaying = YES;
+    [self.player play];
+    [self handle_PlaybackStateChanged];
 }
 
 
@@ -342,7 +345,6 @@ static  NSString* const nAlbumDetail = @"albumdata";
 
 - (IBAction)pushedMoreButton:(id)sender
 {
-    NSLog(@"aaaa");
     MPArtistListViewController* secondView = [[MPArtistListViewController alloc]init];
     [self.navigationController pushViewController:secondView animated:YES];
 
