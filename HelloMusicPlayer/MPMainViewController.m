@@ -37,8 +37,11 @@
 @property BOOL isChangePlayBtnBg;
 
 @property NSString* selectedSongTitle;
+@property NSString* selectedAlbumTitile;
+
 @property NSMutableArray* songDataArray;
 @property UIColor* primaryColor;
+@property UIColor* secondaryColor;
 
 @end
 
@@ -177,6 +180,7 @@ static  NSString* const nAlbumDetail = @"albumdata";
     NSString *artist = [nowPlayingItem valueForProperty:MPMediaItemPropertyArtist];
     NSString *title = [nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
     NSString* albumTitile = [nowPlayingItem valueForProperty:MPMediaItemPropertyAlbumTitle];
+    NSLog(@"albumtitle:%@",albumTitile);
     
     self.songTitleLabel.text = title;
     self.artistNameLabel.text = artist;
@@ -196,6 +200,7 @@ static  NSString* const nAlbumDetail = @"albumdata";
     LEColorScheme* colorScheme = [colorPicker colorSchemeFromImage:resizedImage];
     
     self.primaryColor = colorScheme.primaryTextColor;
+    self.secondaryColor = colorScheme.secondaryTextColor;
     
     self.albumColorImageVIew.image = [self imageWithColor:[UIColor blackColor]];
     
@@ -246,7 +251,7 @@ static  NSString* const nAlbumDetail = @"albumdata";
     NSDictionary* userInfo = [notification userInfo];
     
     self.selectedSongTitle = userInfo[@"name"];
-    self.selectAlbumTitile = userInfo[@"album"];
+    self.selectedAlbumTitile = userInfo[@"album"];
     [self playSelectedMusic];
     
 }
@@ -290,9 +295,15 @@ static  NSString* const nAlbumDetail = @"albumdata";
     //初期化
     MPMusicPlayerController* player = [MPMusicPlayerController iPodMusicPlayer];
     self.player =player;
-    MPMediaQuery* requestQuery = [[MPMediaQuery alloc]init];
-    [requestQuery addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:self.selectedSongTitle forProperty:MPMediaItemPropertyTitle]];
-    [self.player setQueueWithQuery:requestQuery];
+    
+    MPMediaPropertyPredicate* selectedAlbumPredicate = [MPMediaPropertyPredicate predicateWithValue:self.selectedAlbumTitile forProperty:MPMediaItemPropertyAlbumTitle];
+    MPMediaPropertyPredicate* albumSongPredicate = [MPMediaPropertyPredicate predicateWithValue:self.selectedSongTitle forProperty:MPMediaItemPropertyTitle];
+    
+    MPMediaQuery* myComplexQuery = [[MPMediaQuery alloc]init];
+    [myComplexQuery addFilterPredicate:selectedAlbumPredicate];
+    [myComplexQuery addFilterPredicate:albumSongPredicate];
+    
+    [self.player setQueueWithQuery:myComplexQuery];
     
     [self.timer invalidate];
     self.isPlaying = YES;
@@ -370,6 +381,8 @@ static  NSString* const nAlbumDetail = @"albumdata";
     }
     
     cell.textLabel.text =self.songDataArray[indexPath.row];
+    cell.textLabel.textColor = self.secondaryColor;
+    cell.textLabel.font = [UIFont fontWithName:@"helvetica" size:22];
     cell.backgroundColor = [UIColor clearColor];
     
     return cell;

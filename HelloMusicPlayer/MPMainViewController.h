@@ -14,7 +14,6 @@
 @interface MPMainViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,retain)NSString* selectTitle;
-@property (nonatomic,retain)NSString* selectAlbumTitile;
 
 
 @end
