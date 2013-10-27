@@ -22,11 +22,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *playOrStopBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *artworkImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *albumColorImageVIew;
+@property (weak, nonatomic) IBOutlet UIImageView *sliderBgImageView;
 
 - (IBAction)pushedPlayOrStopButton:(id)sender;
 - (IBAction)pushedNextButton:(id)sender;
 - (IBAction)pushedPrevButton:(id)sender;
 - (IBAction)pushedMoreButton:(id)sender;
+- (IBAction)closeTableView:(id)sender;
 @property (weak, nonatomic) IBOutlet UISlider *musicSlider;
 @property (weak, nonatomic) IBOutlet UITableView *songDetailTable;
 
@@ -93,6 +95,15 @@ static  NSString* const nAlbumDetail = @"albumdata";
     self.songDetailTable.dataSource = self;
     self.songDetailTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    //アートワークがタップされるまでテーブルビューは隠す
+    self.songDetailTable.hidden = YES;
+    
+    //タップ処理
+    self.artworkImageView.userInteractionEnabled = YES;
+    [self.artworkImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fadeinTableView)]];
+    
+   
+     
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -180,8 +191,7 @@ static  NSString* const nAlbumDetail = @"albumdata";
     NSString *title = [nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
     NSString* albumTitile = [nowPlayingItem valueForProperty:MPMediaItemPropertyAlbumTitle];
     
-    self.songTitleLabel.text = title;
-    self.artistNameLabel.text = artist;
+    self.title= title;
     
     if (albumTitile) {
         [self.songDataArray removeAllObjects];
@@ -202,14 +212,13 @@ static  NSString* const nAlbumDetail = @"albumdata";
     self.secondaryColor = colorScheme.secondaryTextColor;
     
     self.albumColorImageVIew.image = [self imageWithColor:colorScheme.backgroundColor];
-    
-    self.albumColorImageVIew.alpha = 0.4;
-    
+        
     self.songTitleLabel.textColor = colorScheme.primaryTextColor;
     self.artistNameLabel.textColor = colorScheme.secondaryTextColor;
     self.songDetailTable.backgroundColor = colorScheme.backgroundColor;
     self.navigationController.navigationBar.barTintColor = colorScheme.backgroundColor;
     self.navigationController.navigationBar.tintColor = colorScheme.primaryTextColor;
+    self.sliderBgImageView.backgroundColor = colorScheme.primaryTextColor;
     
     //the total duration of the track...
     
@@ -362,6 +371,11 @@ static  NSString* const nAlbumDetail = @"albumdata";
 
 }
 
+- (IBAction)closeTableView:(id)sender
+{
+    [self fadeoutTableView];
+}
+
 #pragma  mark - tagbleviewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -396,6 +410,8 @@ static  NSString* const nAlbumDetail = @"albumdata";
     NSString* selectedSongTitle = self.songDataArray[indexPath.row];
     
     [self playSelectedTitle:selectedSongTitle songAlbum:self.selectedAlbumTitile];
+    
+    [self fadeoutTableView];
 }
 
 - (void)setSongDataToArray:(NSString *)albumTitile
@@ -410,6 +426,32 @@ static  NSString* const nAlbumDetail = @"albumdata";
     }
     
     [self.songDetailTable reloadData];
+}
+
+#pragma mark - Animation
+
+- (void)fadeinTableView
+{
+    [UIView beginAnimations:nil context:NULL];
+    
+    [UIView setAnimationDuration:0.5];
+    [self.songDetailTable setAlpha:0];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    
+    [self.songDetailTable setHidden:NO];
+    [self.songDetailTable setAlpha:1];
+    
+    [UIView commitAnimations];
+    
+}
+
+- (void)fadeoutTableView
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.songDetailTable.alpha = 0;
+    } completion:^(BOOL finished) {
+        self.songDetailTable.hidden = YES;
+    }];
 }
 
 @end
