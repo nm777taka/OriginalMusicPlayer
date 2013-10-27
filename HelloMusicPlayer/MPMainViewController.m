@@ -385,6 +385,7 @@ static  NSString* const nAlbumDetail = @"albumdata";
     cell.textLabel.text =self.songDataArray[indexPath.row];
     cell.textLabel.textColor = self.secondaryColor;
     cell.textLabel.font = [UIFont fontWithName:@"helvetica" size:22];
+    
     cell.backgroundColor = [UIColor clearColor];
     
     return cell;
