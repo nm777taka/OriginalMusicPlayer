@@ -102,8 +102,7 @@ static  NSString* const nAlbumDetail = @"albumdata";
     self.artworkImageView.userInteractionEnabled = YES;
     [self.artworkImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fadeinTableView)]];
     
-   
-     
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -191,8 +190,6 @@ static  NSString* const nAlbumDetail = @"albumdata";
     NSString *title = [nowPlayingItem valueForProperty:MPMediaItemPropertyTitle];
     NSString* albumTitile = [nowPlayingItem valueForProperty:MPMediaItemPropertyAlbumTitle];
     
-    self.title= title;
-    
     if (albumTitile) {
         [self.songDataArray removeAllObjects];
         [self setSongDataToArray:albumTitile];
@@ -204,21 +201,28 @@ static  NSString* const nAlbumDetail = @"albumdata";
     
     [self.artworkImageView setImage:resizedImage];
     
-    //iTunescolor処理
+    //iTunescolorAlgolism....
     LEColorPicker* colorPicker = [[LEColorPicker alloc]init];
     LEColorScheme* colorScheme = [colorPicker colorSchemeFromImage:resizedImage];
-    
     self.primaryColor = colorScheme.primaryTextColor;
     self.secondaryColor = colorScheme.secondaryTextColor;
     
+    //setColor to imageViews....
     self.albumColorImageVIew.image = [self imageWithColor:colorScheme.backgroundColor];
-        
-    self.songTitleLabel.textColor = colorScheme.primaryTextColor;
-    self.artistNameLabel.textColor = colorScheme.secondaryTextColor;
+    self.sliderBgImageView.backgroundColor = colorScheme.primaryTextColor;
+
+    //setColor to tableView
     self.songDetailTable.backgroundColor = colorScheme.backgroundColor;
+    //setcolor to navigationbar....
     self.navigationController.navigationBar.barTintColor = colorScheme.backgroundColor;
     self.navigationController.navigationBar.tintColor = colorScheme.primaryTextColor;
-    self.sliderBgImageView.backgroundColor = colorScheme.primaryTextColor;
+    
+    UILabel* labelTop = [[UILabel alloc]initWithFrame:CGRectZero];
+    self.navigationItem.titleView = labelTop;
+    labelTop.textColor = colorScheme.primaryTextColor;
+    labelTop.text = title;
+    [labelTop sizeToFit];
+    
     
     //the total duration of the track...
     
